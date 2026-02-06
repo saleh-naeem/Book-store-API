@@ -12,6 +12,7 @@ app.use('/api/books',require('./route/books'))
 app.use('/api/aother',require('./route/aother'))
 app.use('/api/aoth', require('./route/aoth'))
 app.use('/api/user',require('./route/users'))
+app.use('/api/uplode/image',require('./route/uplode'))
 app.use(errorhandler)
 app.use(notfound)
 

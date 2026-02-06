@@ -12,8 +12,11 @@ aother:{
     type:mongooes.Schema.Types.ObjectId,
     required:true,
     ref:"Aother"
+},
+price:{
+    type:Number
+    
 }
-
 
 },{timestamps: true})
 const Book=mongooes.model("Book",bookshcema)

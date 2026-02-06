@@ -1,8 +1,6 @@
 const express =require('express');
 const router=express.Router();
-const joi = require('joi');
-const {Aother}=require('../models/Aother')
-const asyncHandler= require("express-async-handler")
+const {getAllAother,getAotherId,deleteAother,updateAother,creatAother}= require('../controler/aothercontroler')
 //vildeat for criting 
 function createvalidate(obj){
 const shcema=joi.object({
@@ -12,87 +10,13 @@ nasonalty:joi.string().min(3).max(10)
 })
 return shcema.validate(obj)
 }
-const aothers =[
-    {   id:1,
-        firstname:"saleh",
-        lastname:"talaib",
-        nasonalty:"jordainan"
-    },
-    {   id:2,
-        firstname:"zoro",
-        lastname:"talaib",
-        nasonalty:"jabiness"
-    }
-]
-/*
-* @desc get all aother
-* @ router api/aother
-* @ methode get
-*/
-router.get('/',asyncHandler (async(req,res)=>{
-        const listofaothers=await Aother.find()
-        res.status(200).json(listofaothers)
-}))
-/*
-* @desc get spictific aother
-* @ router api/aother
-* @ methode get
-*/
-router.get('/:id',async(req,res)=>{
-   try{
-     const aother= await Aother.findById(req.params.id)
-    if(aother){res.status(200).json(aother)}
-    else res.status(404).send("the aother is not exist")
-   } catch(error){console.log(error);
-    res.status(500).send("there is some thing wrong")
-   }
-})
-router.post('/',async(req,res)=>{
-    const {error} =createvalidate(req.body)
-    if(error){ return res.status(400).send(error.details[0].message)}
-    try{
-        const aother =new Aother({
-        firstname:req.body.firstname,
-        lastname:req.body.lastname,
-        nasonalty:req.body.nasonalty
-    })
-   const rus= await aother.save()
-    res.status(201).json(rus);
-    }catch(error){
-        console.log(error);
-        res.status(500).send("there is somthing wrong")
-    }
-})
-router.put('/:id',async (req,res)=>{
-   try{
-    const aother= await Aother.findByIdAndUpdate(req.params.id,{
-    $set:{
-        firstname:req.body.firstname,
-        lastname:req.body.lastname,
-        nasonalty:req.body.nasonalty
-    }}
-   ,{new:true})
-   res.status(200).json(aother)
-   }catch(error){
-        console.log(error);
-        res.status(500).send("there is somthing wrong")
-   }
-})
-router.delete('/:id',async(req,res)=>{
-    try{
-        const aother = await Aother.findById(req.params.id)
-    if(aother){
-    await Aother.findByIdAndDelete(req.params.id)
-    res.status(200).send("Aother has been deleted")
-    }
-    else {
-        res.status(402).send("Aother notfound")
-    }
-    }catch(error){
-        console.log(error)
-        res.status(500).send(" there is some thing wrong")
-    }
-})
+
+router.get('/',getAllAother)
+
+router.get('/:id',getAotherId)
+router.post('/',creatAother)
+router.put('/:id',updateAother)
+router.delete('/:id',deleteAother)
 
 
 module.exports=router;
