@@ -1,76 +1,84 @@
-# 📚 Bookstore RESTful API
+# Book Store API
 
-A backend system for managing a digital library, built while learning the core principles of **Node.js, Express, and MongoDB**. This project demonstrates a clear understanding of the MVC pattern, database relationships, and secure user management.
+A RESTful API for managing a book store application built with Node.js, Express, and MongoDB.
 
-## 🚀 Key Features
+## Features
 
-* **Book & Author Management**: Full CRUD operations with linked data (associating books with specific authors).
-* **User Authentication**: Comprehensive Auth system using **JWT** and **Bcrypt** for secure access.
-* **Data Seeding**: Built a custom seeder script to automate the population and resetting of the database for testing.
-* **Clean Architecture**: Organized using a Controller-Route-Model pattern for high maintainability.
-* **Error Handling**: Implemented custom global middleware to handle 404s and server errors gracefully.
-* **Advanced Querying**: Supports pagination for browsing authors.
-* **Security**: Role-based logic to ensure only authorized users can modify the library.
+- User authentication and authorization with JWT
+- CRUD operations for books and authors
+- Role-based access control (Admin/User)
+- Image upload functionality
+- Pagination support
+- Input validation
 
----
+## Technologies Used
 
-## 🛠️ Tech Stack
+- Node.js
+- Express.js
+- MongoDB & Mongoose
+- JWT (JSON Web Tokens)
+- Bcrypt for password hashing
+- Multer for file uploads
+- Joi for validation
 
-* **Backend**: Node.js, Express.js
-* **Database**: MongoDB (Mongoose)
-* **Validation**: Joi
-* **Security**: JSON Web Tokens (JWT), Bcrypt
-* **Environment**: Dotenv (Config management)
+## API Endpoints
 
----
+### Authentication
+- `POST /api/aoth/register` - Register new user
+- `POST /api/aoth/login` - Login user
 
-## 📂 Project Structure
+### Books
+- `GET /api/books` - Get all books
+- `GET /api/books/:id` - Get book by ID
+- `POST /api/books` - Create new book
+- `PUT /api/books/:id` - Update book
+- `DELETE /api/books/:id` - Delete book
 
-* **`/config`**: Database connection logic.
-* **`/controler`**: Business logic for Books, Authors, and Users.
-* **`/models`**: Mongoose schemas and data validation rules.
-* **`/route`**: API endpoint definitions.
-* **`/midelwear`**: Authentication, logging, and error handling.
-* **`seeder.js`**: Automation script for database management.
+### Authors
+- `GET /api/aother` - Get all authors (with pagination)
+- `GET /api/aother/:id` - Get author by ID
+- `POST /api/aother` - Create new author
+- `PUT /api/aother/:id` - Update author
+- `DELETE /api/aother/:id` - Delete author
 
----
+### Users
+- `GET /api/user` - Get all users (Admin only)
+- `GET /api/user/:id` - Get user by ID
+- `PUT /api/user/:id` - Update user
+- `DELETE /api/user/:id` - Delete user
 
-## 📡 API Endpoints (Highlights)
+### Upload
+- `POST /api/uplode/image` - Upload image
 
-### 📖 Books
-| Method | Endpoint | Description |
-| :--- | :--- | :--- |
-| GET | `/api/books` | Get all books (populated with author details) |
-| POST | `/api/books` | Create a new book |
+## Installation
 
-### ✍️ Authors
-| Method | Endpoint | Description |
-| :--- | :--- | :--- |
-| GET | `/api/aother` | Get authors (supports pagination) |
-| POST | `/api/aother` | Add a new author to the database |
+```bash
+npm install
+```
 
-### 🔐 Auth & Users
-| Method | Endpoint | Description |
-| :--- | :--- | :--- |
-| POST | `/api/aoth/register` | Register a new user |
-| POST | `/api/aoth/login` | Login and receive access token |
-| GET | `/api/user` | Manage user profiles (Admin restricted) |
+## Environment Variables
 
----
+Create a `.env` file in the root directory:
 
-## ⚙️ How to Run
+```
+PORT=your_port
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+```
 
-1. **Install dependencies**: `npm install`
-2. **Setup .env**: Create a `.env` file with your `MONGO_URL` and `PORT`.
-3. **Seed Database**: 
-   * Import data: `node seeder.js -import`
-   * Remove data: `node seeder.js -remove`
-4. **Start Server**: `npm start` (or `node app.js`)
+## Running the Application
 
----
+```bash
+npm start
+```
 
-## 📈 Learning Outcomes
-This project allowed me to master:
-- Structuring a Node.js project for scalability.
-- Managing database relationships in NoSQL.
-- Implementing standard industry practices for API security.
+## Project Structure
+
+```
+├── config/          # Database configuration
+├── controler/       # Request handlers
+├── midelwear/       # Middleware functions
+├── models/          # Database models
+├── route/           # API routes
+└── app.js           # Application entry point
+```
