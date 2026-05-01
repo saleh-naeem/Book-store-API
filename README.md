@@ -1,84 +1,96 @@
 # Book Store API
 
-A RESTful API for managing a book store application built with Node.js, Express, and MongoDB.
+A RESTful backend API for managing a book store application.  
+The project was built using Node.js, Express.js, MongoDB, and JWT authentication to practice backend development fundamentals such as routing, middleware, validation, authentication, authorization, and CRUD operations.
+
+---
 
 ## Features
 
-- User authentication and authorization with JWT
-- CRUD operations for books and authors
-- Role-based access control (Admin/User)
-- Image upload functionality
+- User registration and login
+- JWT-based authentication
+- Password hashing using bcrypt
+- Role-based access control for Admin and User
+- CRUD operations for books
+- CRUD operations for authors
+- User management
+- Image upload using Multer
 - Pagination support
-- Input validation
+- Input validation using Joi
+
+---
 
 ## Technologies Used
 
 - Node.js
 - Express.js
-- MongoDB & Mongoose
-- JWT (JSON Web Tokens)
-- Bcrypt for password hashing
-- Multer for file uploads
-- Joi for validation
+- MongoDB
+- Mongoose
+- JWT
+- bcrypt
+- Multer
+- Joi
+
+---
 
 ## API Endpoints
 
 ### Authentication
-- `POST /api/aoth/register` - Register new user
-- `POST /api/aoth/login` - Login user
+
+| Method | Endpoint | Description | Access |
+|---|---|---|---|
+| POST | `/api/aoth/register` | Register new user | Public |
+| POST | `/api/aoth/login` | Login user | Public |
+
+---
 
 ### Books
-- `GET /api/books` - Get all books
-- `GET /api/books/:id` - Get book by ID
-- `POST /api/books` - Create new book
-- `PUT /api/books/:id` - Update book
-- `DELETE /api/books/:id` - Delete book
+
+| Method | Endpoint | Description | Access |
+|---|---|---|---|
+| GET | `/api/books` | Get all books | Public |
+| GET | `/api/books/:id` | Get book by ID | Public |
+| POST | `/api/books` | Create new book | Admin |
+| PUT | `/api/books/:id` | Update book | Admin |
+| DELETE | `/api/books/:id` | Delete book | Admin |
+
+---
 
 ### Authors
-- `GET /api/aother` - Get all authors (with pagination)
-- `GET /api/aother/:id` - Get author by ID
-- `POST /api/aother` - Create new author
-- `PUT /api/aother/:id` - Update author
-- `DELETE /api/aother/:id` - Delete author
+
+| Method | Endpoint | Description | Access |
+|---|---|---|---|
+| GET | `/api/aother` | Get all authors with pagination | Public |
+| GET | `/api/aother/:id` | Get author by ID | Public |
+| POST | `/api/aother` | Create new author | Admin |
+| PUT | `/api/aother/:id` | Update author | Admin |
+| DELETE | `/api/aother/:id` | Delete author | Admin |
+
+---
 
 ### Users
-- `GET /api/user` - Get all users (Admin only)
-- `GET /api/user/:id` - Get user by ID
-- `PUT /api/user/:id` - Update user
-- `DELETE /api/user/:id` - Delete user
+
+| Method | Endpoint | Description | Access |
+|---|---|---|---|
+| GET | `/api/user` | Get all users | Admin |
+| GET | `/api/user/:id` | Get user by ID | Admin/User |
+| PUT | `/api/user/:id` | Update user | Admin/User |
+| DELETE | `/api/user/:id` | Delete user | Admin/User |
+
+---
 
 ### Upload
-- `POST /api/uplode/image` - Upload image
+
+| Method | Endpoint | Description | Access |
+|---|---|---|---|
+| POST | `/api/uplode/image` | Upload image | Admin |
+
+---
 
 ## Installation
 
-```bash
-npm install
-```
-
-## Environment Variables
-
-Create a `.env` file in the root directory:
-
-```
-PORT=your_port
-MONGODB_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
-```
-
-## Running the Application
+### 1. Clone the repository
 
 ```bash
-npm start
-```
-
-## Project Structure
-
-```
-├── config/          # Database configuration
-├── controler/       # Request handlers
-├── midelwear/       # Middleware functions
-├── models/          # Database models
-├── route/           # API routes
-└── app.js           # Application entry point
-```
+git clone https://github.com/saleh-naeem/Book-store-.APIgit
+cd book-store-api
